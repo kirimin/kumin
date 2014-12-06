@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/imageLayoutTop"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="16dp" >
+
+    <Button
+        android:id="@+id/imageButtonCamera"
+        android:layout_width="260dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="16dp"
+        android:paddingLeft="8dp"
+        android:text="@string/image_upload_tweet_camera"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:textColor="#CCCCCC"
+        android:background="@drawable/button_menu_items"
+        android:gravity="left|center_vertical" />
+
+    <Button
+        android:id="@+id/imageButtonGallery"
+        android:layout_width="260dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="16dp"
+        android:paddingLeft="8dp"
+        android:text="@string/image_upload_tweet_gallery"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:textColor="#CCCCCC"
+        android:background="@drawable/button_menu_items"
+        android:gravity="left|center_vertical" />
+
+</LinearLayout>

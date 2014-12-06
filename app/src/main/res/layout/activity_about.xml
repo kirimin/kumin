@@ -1,0 +1,98 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    tools:context=".TopActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="開発者：きりみん"
+                android:textStyle="bold"
+                android:textColor="@color/red" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:autoLink="web"
+                android:text="http://kirimin.me" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="他のアプリもよろしくお願いします"
+                android:textColor="@color/gray_text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:autoLink="web"
+                android:text="https://play.google.com/store/apps/developer?id=kirimin" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="レビューを頂けると励みになります"
+                android:textColor="@color/gray_text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:autoLink="web"
+                android:text="https://play.google.com/store/apps/details?id=me.kirimin.kumin" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="本アプリには以下のライブラリを使用しています。"
+                android:textStyle="bold"
+                android:textColor="@color/gray_text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="■Twitter4j"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/gray_text" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@android:color/white"
+                android:text="@string/twitter4j_license" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="■Picasso"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/gray_text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:text="@string/picasso_license" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

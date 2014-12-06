@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/kuminheader"
+        android:scaleType="fitStart"
+        android:background="@android:color/white" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_gray">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/settingAccountTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/setting_main_signed_accounts"
+                android:textColor="@color/red"
+                android:textSize="28sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/settingAccountEmptyTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/setting_main_empty_account"
+                android:textColor="@color/green"
+                android:textSize="20sp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/settingAccountListLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="16dp" />
+
+            <Button
+                android:id="@+id/settingAddAcountButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/setting_main_add_account"
+                android:layout_marginBottom="48dp"
+                android:background="@drawable/button_green"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/settingStartButtonImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_action_play"
+                android:background="@drawable/button_start"
+                android:padding="32dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/settingStartButtonTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/setting_main_start"
+                android:textSize="32sp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/purple"
+                android:layout_marginBottom="48dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/setting_main_setting"
+                android:layout_marginBottom="16dp"
+                android:textColor="@color/red"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/gray_text"
+                android:text="@string/setting_main_is_edit_text_alpha" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <SeekBar
+                    android:id="@+id/settingBackgroundAlphaOnEditSpaceSeekBar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:indeterminate="false"
+                    android:max="255" />
+
+                <View
+                    android:id="@+id/settingBackgroundAlphaOnEditSpaceSample"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@color/gray" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/gray_text"
+                android:text="@string/setting_main_is_tl_text_alpha" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <SeekBar
+                    android:id="@+id/settingBackgroundAlphaOnTimelineSpaceSeekBar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:indeterminate="false"
+                    android:layout_marginBottom="16dp"
+                    android:max="255" />
+
+                <View
+                    android:id="@+id/settingBackgroundAlphaOnTimelineSpaceSample"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@color/gray" />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/settingMinimizeWhenTweetCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/setting_main_is_iconize"
+                android:textColor="@color/gray_text"
+                android:textSize="16sp"
+                android:gravity="top"
+                android:layout_marginBottom="8dp" />
+
+            <CheckBox
+                android:id="@+id/settingShowChengeAccountButtonCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/setting_main_is_show_account_button"
+                android:textColor="@color/gray_text"
+                android:textSize="16sp"
+                android:gravity="top"
+                android:layout_marginBottom="8dp" />
+
+            <CheckBox
+                android:id="@+id/settingShowOptionButtonCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/setting_main_is_show_menu_button"
+                android:textColor="@color/gray_text"
+                android:textSize="16sp"
+                android:gravity="top"
+                android:layout_marginBottom="8dp" />
+
+            <CheckBox
+                android:id="@+id/settingShowHashTagButtonCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/setting_main_is_show_hashtag_button"
+                android:textColor="@color/gray_text"
+                android:textSize="16sp"
+                android:gravity="top"
+                android:layout_marginBottom="16dp" />
+
+            <Button
+                android:id="@+id/settingAddHashTag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/setting_main_hashtag"
+                android:background="@drawable/button_gray"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:layout_marginBottom="32dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/setting_main_other"
+                android:layout_marginBottom="16dp"
+                android:textColor="@color/red"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/settingAboutButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/setting_main_about"
+                android:background="@drawable/button_gray"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

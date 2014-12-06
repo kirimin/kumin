@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="alpha">#00000000</color>
+    <color name="gray">#DDDDDD</color>
+    <color name="light_gray">#EEEEEE</color>
+    <color name="blue">#22A0DD</color>
+    <color name="red">#FA1B69</color>
+    <color name="green">#42BD9A</color>
+    <color name="green_pressed">#64DFBC</color>
+    <color name="purple">#A537FD</color>
+    <color name="gray_text">#888888</color>
+    <color name="gray_text_pressed">#AAAAAA</color>
+</resources>

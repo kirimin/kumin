@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="char_minimize">-</string>
+    <string name="char_open">□</string>
+    <string name="char_hashTag">#</string>
+    <string name="char_replay">\@</string>
+    <string name="char_close">✕</string>
+    <string name="char_space"> </string>
+</resources>

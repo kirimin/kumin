@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">Kumin</string>
+
+    <string name="setting_main_start">Start</string>
+    <string name="setting_main_stop">Stop</string>
+    <string name="setting_main_is_show_layer">Show window</string>
+    <string name="setting_main_account">Account settings</string>
+    <string name="setting_main_hashtag">Hash tag settings</string>
+    <string name="setting_main_is_iconize">Minimize the view when post a tweet</string>
+    <string name="setting_main_is_show_account_button">Show icon change button</string>
+    <string name="setting_main_is_show_hashtag_button">Show hash tag change button</string>
+    <string name="setting_main_is_show_menu_button">Show tweet menu button</string>
+    <string name="setting_main_is_edit_text_alpha">Transparency on tweet space </string>
+    <string name="setting_main_is_tl_text_alpha">Transparency on timeLine space</string>
+    <string name="setting_main_signed_accounts">Signed accounts</string>
+    <string name="setting_main_empty_account">Welcome to the Kumin! \nplease login your account</string>
+    <string name="setting_main_add_account">+Add a account</string>
+    <string name="setting_main_setting_acount">Account settings</string>
+    <string name="setting_main_add_hashtag">Add hash tag</string>
+    <string name="setting_main_add_hashtag_button">Add</string>
+    <string name="setting_main_about">About This App</string>
+    <string name="setting_main_other">Others</string>
+    <string name="setting_main_setting">Settings</string>
+
+    <string name="oauth_text1">1.Access to Twitter from button at below, and please copy the authentication code.</string>
+    <string name="oauth_button_accesstwitter">Access to Twitter</string>
+    <string name="oauth_text2">2.Please paste it to input field.</string>
+    <string name="oauth_text3">3.Please authenticate Press the button below After you paste the authentication code.</string>
+    <string name="oauth_button_login">Authentication</string>
+    <string name="oauth_mess_add_account">Added the account</string>
+    <string name="oauth_dialog_access_twitter">Connecting to Twitter</string>
+    
+    <string name="delete_aount_dialog_message"> delete?</string>
+    <string name="delete_aount_dialog_positive">yes</string>
+    <string name="delete_aount_dialog_negative">no</string>
+    <string name="delete_aount_dialog_deleted">deleted</string>
+    
+    <string name="tweet_account">Account</string>
+    <string name="tweet_tweet">Tweet</string>
+    <string name="layer_toast_tweeting">now tweeting…</string>
+    <string name="layer_toast_tweet_ok">Tweet success</string>
+    <string name="layer_toast_favoriting">now favoriting…</string>
+    <string name="layer_toast_favo_ok">Favorite success</string>
+    
+    <string name="image_upload_tweet_camera">Image upload from camera</string>
+    <string name="image_upload_tweet_gallery">Image upload from gallery</string>
+    
+    <string name="twitter_exeption_network">Network Error</string>
+    <string name="twitter_exeption_auth">Authentication error</string>
+    <string name="twitter_exeption_image_too_big">Image file is too big</string>
+    
+    <string name="account_not_find">Account is not registered</string>
+    
+    <string name="status_bar_mess">Show Tweet view by tapping</string>
+    
+        <string name="twitter4j_license">Copyright (C) 2007 Yusuke Yamamoto\n
+\n
+Licensed under the Apache License, Version 2.0 (the "License");\n
+you may not use this file except in compliance with the License.\n
+You may obtain a copy of the License at\n
+\n
+      http://www.apache.org/licenses/LICENSE-2.0\n
+\n
+Unless required by applicable law or agreed to in writing, software\n
+Distributed under the License is distributed on an "AS IS" BASIS,\n
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n
+See the License for the specific language governing permissions and\n
+limitations under the License.    \n</string>
+
+        <string name="picasso_license">Copyright 2013 Square, Inc.\n
+\n
+Licensed under the Apache License, Version 2.0 (the "License");\n
+you may not use this file except in compliance with the License.\n
+You may obtain a copy of the License at\n
+\n
+   http://www.apache.org/licenses/LICENSE-2.0\n
+\n
+Unless required by applicable law or agreed to in writing, software\n
+distributed under the License is distributed on an "AS IS" BASIS,\n
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n
+See the License for the specific language governing permissions and\n
+limitations under the License.</string>
+</resources>

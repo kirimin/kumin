@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="setting_alphas">
+        <item>light</item>
+        <item>normal</item>
+        <item>dark</item>
+    </string-array>
+    
+    <string-array name="setting_tl_alphas">
+        <item>light</item>
+        <item>normal</item>
+        <item>dark</item>
+    </string-array>
+</resources>

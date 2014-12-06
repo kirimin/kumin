@@ -1,0 +1,32 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 17
+    buildToolsVersion "20.0.0"
+
+    defaultConfig {
+        applicationId "me.kirimin.kumin"
+        minSdkVersion 10
+        targetSdkVersion 17
+    }
+
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:19.+'
+    compile 'com.android.support:appcompat-v7:19.+'
+    compile 'com.squareup.picasso:picasso:2.3.3'
+    compile "org.twitter4j:twitter4j-core:4.0.1"
+    compile "org.twitter4j:twitter4j-async:4.0.1"
+    compile "org.twitter4j:twitter4j-stream:4.0.1"
+}

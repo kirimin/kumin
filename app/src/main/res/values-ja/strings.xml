@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Kumin</string>
+
+    <string name="setting_main_start">常駐開始</string>
+    <string name="setting_main_stop">常駐終了</string>
+    <string name="setting_main_is_show_layer">画面に表示</string>
+    <string name="setting_main_account">アカウント設定</string>
+    <string name="setting_main_hashtag">ハッシュタグ設定</string>
+    <string name="setting_main_is_iconize">ツイート完了時に最小化</string>
+    <string name="setting_main_is_show_account_button">アカウント切り替えボタンを表示する</string>
+    <string name="setting_main_is_show_hashtag_button">ハッシュタグ切り替えボタンを表示する</string>
+    <string name="setting_main_is_show_menu_button">オプションボタンを表示する</string>
+    <string name="setting_main_is_edit_text_alpha">入力スペース背景 透明度</string>
+    <string name="setting_main_is_tl_text_alpha">タイムライン背景 透明度</string>
+    <string name="setting_main_add_account">＋アカウントを登録する</string>
+    <string name="setting_main_signed_accounts">登録済みアカウント</string>
+    <string name="setting_main_empty_account">Kuminへようこそ！\nまずはアカウントを登録しましょう！</string>
+    <string name="setting_main_setting_acount">アカウント設定</string>
+    <string name="setting_main_add_hashtag">ハッシュタグを追加する</string>
+    <string name="setting_main_add_hashtag_button">追加</string>
+    <string name="setting_main_about">このアプリについて</string>
+    <string name="setting_main_other">その他</string>
+    <string name="setting_main_setting">設定</string>
+
+    <string name="oauth_text1">1.以下のボタンからTwitterにアクセスし、認証コードをコピーしてください。（ブラウザが開きます）</string>
+    <string name="oauth_button_accesstwitter">Twitterにアクセス</string>
+    <string name="oauth_text2">2.コピーした認証コードを以下の入力欄に貼り付けてください。</string>
+    <string name="oauth_text3">3.認証コードを貼り付けたら以下のボタンを押し認証してください。</string>
+    <string name="oauth_button_login">認証</string>
+    <string name="oauth_mess_add_account">アカウントを追加しました</string>
+    <string name="oauth_dialog_access_twitter">Twitterへ接続中</string>
+
+    <string name="delete_aount_dialog_message">を一覧から削除しますか？</string>
+    <string name="delete_aount_dialog_positive">はい</string>
+    <string name="delete_aount_dialog_negative">いいえ</string>
+    <string name="delete_aount_dialog_deleted">削除されました</string>
+
+    <string name="tweet_account">アカウント</string>
+    <string name="tweet_tweet">Tweet</string>
+    <string name="layer_toast_tweeting">投稿中…</string>
+    <string name="layer_toast_tweet_ok">投稿成功</string>
+    <string name="layer_toast_favoriting">お気に入り登録中…</string>
+    <string name="layer_toast_favo_ok">お気に入り登録成功</string>
+
+    <string name="image_upload_tweet_camera">写真を撮影してアップロード</string>
+    <string name="image_upload_tweet_gallery">ギャラリーから画像を選んでアップロード</string>
+
+    <string name="twitter_exeption_network">Twitterとの通信に失敗しました。通信環境などを確認しもう一度お試しください</string>
+    <string name="twitter_exeption_auth">認証に失敗しました</string>
+    <string name="twitter_exeption_image_too_big">画像が大きすぎるようです。投稿出来る画像は３MB以下です</string>
+
+    <string name="account_not_find">アカウントが登録されていません。まずはアカウントの設定を行なってください</string>
+
+    <string name="status_bar_mess">タップしてビューを表示・タッチモード切り替え</string>
+</resources>
