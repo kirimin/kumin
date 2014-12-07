@@ -137,11 +137,7 @@ public class Twitter {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        String userId = String.valueOf(accessToken.getUserId());
-                        String sName = accessToken.getScreenName();
-                        String token = accessToken.getToken();
-                        String secret = accessToken.getTokenSecret();
-                        listener.gotOAuthAccessToken(new User(userId, sName, token, secret));
+                        listener.gotOAuthAccessToken(toUser(accessToken));
                     }
                 });
             }
@@ -222,6 +218,13 @@ public class Twitter {
                 });
             }
         });
+    }
+
+    private static User toUser(AccessToken accessToken) {
+        return new User(String.valueOf(accessToken.getUserId()),
+                accessToken.getScreenName(),
+                accessToken.getToken(),
+                accessToken.getTokenSecret());
     }
 
     private static Tweet toTweet(Status status) {
