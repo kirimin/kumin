@@ -35,7 +35,6 @@ public class Twitter {
 
     private AsyncTwitter mTwitter = new AsyncTwitterFactory().getInstance();
     private TwitterStream mStream = new TwitterStreamFactory().getInstance();
-    private UserStreamListener mStreamListener;
 
     private Handler mHandler = new Handler();
     private RequestToken mRequestToken;
@@ -165,7 +164,7 @@ public class Twitter {
 
     public void setStreamListener(final StreamListener listener) {
         mStream.clearListeners();
-        mStreamListener = new UserStreamAdapter() {
+        mStream.addListener(new UserStreamAdapter() {
             @Override
             public void onStatus(final Status status) {
                 mHandler.post(new Runnable() {
@@ -175,8 +174,7 @@ public class Twitter {
                     }
                 });
             }
-        };
-        mStream.addListener(mStreamListener);
+        });
         mStream.addConnectionLifeCycleListener(new ConnectionLifeCycleListener() {
 
             @Override
