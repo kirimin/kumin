@@ -6,15 +6,22 @@ import me.kirimin.kumin.db.User;
 
 public class TwitterUtil {
 
-    public static User searchNextUser(List<User> userList, String nowAccount) {
-        for (int i = 0; i < userList.size(); i++) {
-            if (!userList.get(i).getSName().equals(nowAccount)) {
+    /**
+     * 現在のアカウントから切り替えるべき次のアカウントを探す
+     *
+     * @param accountList アカウントの一覧
+     * @param nowAccount  現在選択中のアカウント
+     * @return 受け取ったリストから現アカウントの次の要素のアカウントを返す。見つからなければnullを返す。
+     */
+    public static User searchNextUser(List<User> accountList, String nowAccount) {
+        for (int i = 0; i < accountList.size(); i++) {
+            if (!accountList.get(i).getSName().equals(nowAccount)) {
                 continue;
             }
-            if (userList.size() == i + 1) {
-                return userList.get(0);
+            if (accountList.size() == i + 1) {
+                return accountList.get(0);
             } else {
-                return userList.get(i + 1);
+                return accountList.get(i + 1);
             }
         }
         return null;
