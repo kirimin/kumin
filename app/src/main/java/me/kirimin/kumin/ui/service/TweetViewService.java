@@ -247,7 +247,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
             case R.id.tweetViewButtonAccount:
                 // 投稿するアカウントを入れ替える
-                User nextUser = TwitterUtil.searchNextUser(new UserDAO(this).getUsers(), mButtonAccount.getText().toString());
+                User nextUser = TwitterUtil.searchNextAccount(new UserDAO(this).getUsers(), mButtonAccount.getText().toString());
                 if (nextUser != null) {
                     setUser(nextUser);
                 }
