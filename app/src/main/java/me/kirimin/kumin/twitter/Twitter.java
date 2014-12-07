@@ -1,16 +1,14 @@
-package me.kirimin.kumin;
+package me.kirimin.kumin.twitter;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 import android.net.Uri;
 import android.os.Handler;
 
-import me.kirimin.kumin.db.User;
+import me.kirimin.kumin.Consumer;
+import me.kirimin.kumin.model.Tweet;
+import me.kirimin.kumin.model.User;
 import twitter4j.AsyncTwitter;
 import twitter4j.AsyncTwitterFactory;
 import twitter4j.ConnectionLifeCycleListener;
@@ -22,7 +20,6 @@ import twitter4j.TwitterMethod;
 import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
 import twitter4j.UserStreamAdapter;
-import twitter4j.UserStreamListener;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
@@ -35,7 +32,6 @@ public class Twitter {
 
     private AsyncTwitter mTwitter = new AsyncTwitterFactory().getInstance();
     private TwitterStream mStream = new TwitterStreamFactory().getInstance();
-    private UserStreamListener mStreamListener;
 
     private Handler mHandler = new Handler();
     private RequestToken mRequestToken;
@@ -87,7 +83,7 @@ public class Twitter {
     /**
      * お気に入り登録/解除
      *
-     * @param user
+     * @param userId StatusのgetIdで取得できるユーザーのID
      */
     public void doFavorite(long userId) {
         mTwitter.createFavorite(userId);
@@ -141,11 +137,7 @@ public class Twitter {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        String userId = String.valueOf(accessToken.getUserId());
-                        String sName = accessToken.getScreenName();
-                        String token = accessToken.getToken();
-                        String secret = accessToken.getTokenSecret();
-                        listener.gotOAuthAccessToken(new User(userId, sName, token, secret));
+                        listener.gotOAuthAccessToken(toUser(accessToken));
                     }
                 });
             }
@@ -165,18 +157,17 @@ public class Twitter {
 
     public void setStreamListener(final StreamListener listener) {
         mStream.clearListeners();
-        mStreamListener = new UserStreamAdapter() {
+        mStream.addListener(new UserStreamAdapter() {
             @Override
             public void onStatus(final Status status) {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        listener.onStatus(status);
+                        listener.onUpdateStream(toTweet(status));
                     }
                 });
             }
-        };
-        mStream.addListener(mStreamListener);
+        });
         mStream.addConnectionLifeCycleListener(new ConnectionLifeCycleListener() {
 
             @Override
@@ -229,29 +220,20 @@ public class Twitter {
         });
     }
 
-    public String getTimeStamp(Date createdAt) {
-        Calendar nowCal = Calendar.getInstance();
-        Calendar createdAtCal = Calendar.getInstance();
-        createdAtCal.setTime(createdAt);
-
-        if (!isToday(nowCal, createdAtCal)) {
-            SimpleDateFormat format = new SimpleDateFormat("mm/dd", Locale.JAPAN);
-            return format.format(createdAt);
-        } else if (nowCal.get(Calendar.HOUR_OF_DAY) != createdAtCal.get(Calendar.HOUR_OF_DAY)) {
-            return nowCal.get(Calendar.HOUR_OF_DAY) - createdAtCal.get(Calendar.HOUR_OF_DAY) + "h";
-        } else if (nowCal.get(Calendar.MINUTE) > createdAtCal.get(Calendar.MINUTE)) {
-            return nowCal.get(Calendar.MINUTE) - createdAtCal.get(Calendar.MINUTE) + "m";
-        } else {
-            String s = nowCal.get(Calendar.SECOND) - createdAtCal.get(Calendar.SECOND) + "s";
-            return s.equals("-1s") ? "0s" : s;
-        }
-
+    private static User toUser(AccessToken accessToken) {
+        return new User(String.valueOf(accessToken.getUserId()),
+                accessToken.getScreenName(),
+                accessToken.getToken(),
+                accessToken.getTokenSecret());
     }
 
-    private boolean isToday(Calendar cal1, Calendar cal2) {
-        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
-                && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)
-                && cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH);
+    private static Tweet toTweet(Status status) {
+        return new Tweet(status.getId(),
+                status.getText(),
+                status.getUser().getName(),
+                status.getUser().getScreenName(),
+                status.getUser().getProfileImageURL(),
+                status.getCreatedAt());
     }
 
     /**
@@ -269,7 +251,7 @@ public class Twitter {
      * ストリーム取得時に呼び出されるリスナー
      */
     public interface StreamListener {
-        public void onStatus(Status status);
+        public void onUpdateStream(Tweet tweet);
     }
 
     public interface OnOAuthListener {

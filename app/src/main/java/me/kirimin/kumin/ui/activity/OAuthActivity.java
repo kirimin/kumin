@@ -1,10 +1,10 @@
 package me.kirimin.kumin.ui.activity;
 
 import me.kirimin.kumin.R;
-import me.kirimin.kumin.Twitter;
-import me.kirimin.kumin.db.User;
+import me.kirimin.kumin.twitter.Twitter;
+import me.kirimin.kumin.model.User;
 import me.kirimin.kumin.db.UserDAO;
-import android.app.Activity;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -71,8 +71,8 @@ public class OAuthActivity extends ActionBarActivity {
 
         @Override
         public void onClick(View view) {
-            EditText editPincode = (EditText) findViewById(R.id.oauthEditPincode);
-            mTwitter.getOAuthAccessToken(editPincode.getText().toString());
+            EditText editPinCode = (EditText) findViewById(R.id.oauthEditPincode);
+            mTwitter.getOAuthAccessToken(editPinCode.getText().toString());
             mDialog.show();
         }
     }
