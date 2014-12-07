@@ -1,4 +1,4 @@
-package me.kirimin.kumin;
+package me.kirimin.kumin.twitter;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +10,7 @@ import java.util.Locale;
 import android.net.Uri;
 import android.os.Handler;
 
+import me.kirimin.kumin.Consumer;
 import me.kirimin.kumin.db.User;
 import twitter4j.AsyncTwitter;
 import twitter4j.AsyncTwitterFactory;

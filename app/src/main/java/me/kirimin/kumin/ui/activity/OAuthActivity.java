@@ -1,10 +1,10 @@
 package me.kirimin.kumin.ui.activity;
 
 import me.kirimin.kumin.R;
-import me.kirimin.kumin.Twitter;
+import me.kirimin.kumin.twitter.Twitter;
 import me.kirimin.kumin.db.User;
 import me.kirimin.kumin.db.UserDAO;
-import android.app.Activity;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;

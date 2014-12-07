@@ -1,7 +1,7 @@
 package me.kirimin.kumin.ui.adapter;
 
 import me.kirimin.kumin.R;
-import me.kirimin.kumin.Twitter;
+import me.kirimin.kumin.twitter.Twitter;
 import twitter4j.Status;
 
 import android.content.Context;
