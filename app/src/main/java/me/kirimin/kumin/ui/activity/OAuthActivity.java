@@ -2,7 +2,7 @@ package me.kirimin.kumin.ui.activity;
 
 import me.kirimin.kumin.R;
 import me.kirimin.kumin.twitter.Twitter;
-import me.kirimin.kumin.db.User;
+import me.kirimin.kumin.model.User;
 import me.kirimin.kumin.db.UserDAO;
 
 import android.app.ProgressDialog;

@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.os.Handler;
 
 import me.kirimin.kumin.Consumer;
-import me.kirimin.kumin.db.User;
+import me.kirimin.kumin.model.User;
 import twitter4j.AsyncTwitter;
 import twitter4j.AsyncTwitterFactory;
 import twitter4j.ConnectionLifeCycleListener;

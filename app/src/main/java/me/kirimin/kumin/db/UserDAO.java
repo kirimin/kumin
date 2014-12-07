@@ -5,6 +5,7 @@ import java.util.List;
 
 import me.kirimin.kumin.db.DbHelper.TABLE;
 import me.kirimin.kumin.db.DbHelper.USER;
+import me.kirimin.kumin.model.User;
 
 import android.content.ContentValues;
 import android.content.Context;

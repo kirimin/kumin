@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import me.kirimin.kumin.db.User;
+import me.kirimin.kumin.model.User;
 
 public class TwitterUtil {
 

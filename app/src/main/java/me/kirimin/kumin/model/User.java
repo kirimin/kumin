@@ -1,4 +1,4 @@
-package me.kirimin.kumin.db;
+package me.kirimin.kumin.model;
 
 import java.util.ArrayList;
 import java.util.List;

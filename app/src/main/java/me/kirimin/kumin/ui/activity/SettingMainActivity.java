@@ -5,12 +5,11 @@ import java.util.List;
 import me.kirimin.kumin.AppPreferences;
 import me.kirimin.kumin.R;
 import me.kirimin.kumin.db.HashTagDAO;
-import me.kirimin.kumin.db.User;
+import me.kirimin.kumin.model.User;
 import me.kirimin.kumin.db.UserDAO;
 import me.kirimin.kumin.ui.notification.AppNotificationBuilder;
 import me.kirimin.kumin.ui.service.TweetViewService;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.app.AlertDialog;
