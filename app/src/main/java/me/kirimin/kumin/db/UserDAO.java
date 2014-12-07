@@ -73,10 +73,10 @@ public class UserDAO {
      */
     public User getUser(String userId) throws IllegalArgumentException {
         SQLiteDatabase db = helper.getReadableDatabase();
-        String whare = USER.USER_ID + " = ?";
+        String where = USER.USER_ID + " = ?";
 
         Cursor cursor =
-                db.query(TABLE.USER.name(), USER.columns(), whare, new String[]{userId}, null, null, "1");
+                db.query(TABLE.USER.name(), USER.columns(), where, new String[]{userId}, null, null, "1");
 
         if (cursor.moveToFirst()) {
             String id = cursor.getString(0);

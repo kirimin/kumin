@@ -154,14 +154,14 @@ public class SettingMainActivity extends ActionBarActivity {
             }
         });
 
-        SeekBar alphaTimelineSpaceSeedBar = (SeekBar) findViewById(R.id.settingBackgroundAlphaOnTimelineSpaceSeekBar);
-        alphaTimelineSpaceSeedBar.setProgress(mSharedPreferences.getInt(getString(R.string.setting_value_timeline_aplha), 50));
-        final View timelineSpaceSampleView = findViewById(R.id.settingBackgroundAlphaOnTimelineSpaceSample);
-        timelineSpaceSampleView.setBackgroundColor(Color.argb(mSharedPreferences.getInt(getString(R.string.setting_value_timeline_aplha), 50), 170, 170, 170));
-        alphaTimelineSpaceSeedBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        SeekBar alphaTimeLineSpaceSeedBar = (SeekBar) findViewById(R.id.settingBackgroundAlphaOnTimelineSpaceSeekBar);
+        alphaTimeLineSpaceSeedBar.setProgress(mSharedPreferences.getInt(getString(R.string.setting_value_timeline_aplha), 50));
+        final View timeLineSpaceSampleView = findViewById(R.id.settingBackgroundAlphaOnTimelineSpaceSample);
+        timeLineSpaceSampleView.setBackgroundColor(Color.argb(mSharedPreferences.getInt(getString(R.string.setting_value_timeline_aplha), 50), 170, 170, 170));
+        alphaTimeLineSpaceSeedBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                timelineSpaceSampleView.setBackgroundColor(Color.argb(seekBar.getProgress(), 170, 170, 170));
+                timeLineSpaceSampleView.setBackgroundColor(Color.argb(seekBar.getProgress(), 170, 170, 170));
             }
 
             @Override

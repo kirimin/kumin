@@ -18,7 +18,7 @@ public class AppPreferences {
         return mSharedPreferences.getBoolean(mContext.getString(R.string.setting_value_is_show_account_button), true);
     }
 
-    public boolean readIsShowHashtagButton() {
+    public boolean readIsShowHashTagButton() {
         return mSharedPreferences.getBoolean(mContext.getString(R.string.setting_value_is_show_hashtag_button), true);
     }
 
@@ -34,7 +34,7 @@ public class AppPreferences {
         return mSharedPreferences.getInt(mContext.getString(R.string.setting_value_edit_aplha), 50);
     }
 
-    public int readTimelineAlpha() {
+    public int readTimeLineAlpha() {
         return mSharedPreferences.getInt(mContext.getString(R.string.setting_value_timeline_aplha), 50);
     }
 
@@ -43,9 +43,9 @@ public class AppPreferences {
     }
 
     public void writeTweetTextCache(String tweetText) {
-        SharedPreferences.Editor editer = mSharedPreferences.edit();
-        editer.putString(mContext.getString(R.string.setting_value_tweet_text_cache), tweetText);
-        editer.commit();
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(mContext.getString(R.string.setting_value_tweet_text_cache), tweetText);
+        editor.commit();
     }
 
     public int readTweetViewX() {
@@ -53,9 +53,9 @@ public class AppPreferences {
     }
 
     public void writeTweetViewX(int x) {
-        SharedPreferences.Editor editer = mSharedPreferences.edit();
-        editer.putInt(mContext.getString(R.string.setting_value_tweet_view_x_cache), x);
-        editer.commit();
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putInt(mContext.getString(R.string.setting_value_tweet_view_x_cache), x);
+        editor.commit();
     }
 
     public int readTweetViewY() {
@@ -63,9 +63,9 @@ public class AppPreferences {
     }
 
     public void writeTweetViewY(int y) {
-        SharedPreferences.Editor editer = mSharedPreferences.edit();
-        editer.putInt(mContext.getString(R.string.setting_value_tweet_view_y_cache), y);
-        editer.commit();
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putInt(mContext.getString(R.string.setting_value_tweet_view_y_cache), y);
+        editor.commit();
     }
 
     public String readCurrentUser() {
@@ -73,8 +73,8 @@ public class AppPreferences {
     }
 
     public void writeCurrentUser(String user) {
-        SharedPreferences.Editor editer = mSharedPreferences.edit();
-        editer.putString(mContext.getString(R.string.setting_value_current_user), user);
-        editer.commit();
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(mContext.getString(R.string.setting_value_current_user), user);
+        editor.commit();
     }
 }

@@ -143,7 +143,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
         SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(this);
         mEditTweet.setBackgroundColor(Color.argb(mAppPreferences.readEditAlpha(), 170, 170, 170));
-        mListTimeLine.setBackgroundColor(Color.argb(mAppPreferences.readTimelineAlpha(), 170, 170, 170));
+        mListTimeLine.setBackgroundColor(Color.argb(mAppPreferences.readTimeLineAlpha(), 170, 170, 170));
 
         // Twitterインスタンス初期設定
         mTwitter = new Twitter();
@@ -187,7 +187,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
             } else {
                 mButtonAccount.setVisibility(View.VISIBLE);
             }
-            if (!mAppPreferences.readIsShowHashtagButton()) {
+            if (!mAppPreferences.readIsShowHashTagButton()) {
                 mButtonHashTag.setVisibility(View.GONE);
             } else {
                 mButtonHashTag.setVisibility(View.VISIBLE);

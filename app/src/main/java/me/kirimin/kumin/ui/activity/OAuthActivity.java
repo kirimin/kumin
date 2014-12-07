@@ -71,8 +71,8 @@ public class OAuthActivity extends ActionBarActivity {
 
         @Override
         public void onClick(View view) {
-            EditText editPincode = (EditText) findViewById(R.id.oauthEditPincode);
-            mTwitter.getOAuthAccessToken(editPincode.getText().toString());
+            EditText editPinCode = (EditText) findViewById(R.id.oauthEditPincode);
+            mTwitter.getOAuthAccessToken(editPinCode.getText().toString());
             mDialog.show();
         }
     }
