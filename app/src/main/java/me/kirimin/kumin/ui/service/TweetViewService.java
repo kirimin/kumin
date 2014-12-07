@@ -2,6 +2,7 @@ package me.kirimin.kumin.ui.service;
 
 import java.util.List;
 
+import me.kirimin.kumin.twitter.TwitterUtil;
 import me.kirimin.kumin.ui.notification.AppNotificationBuilder;
 import twitter4j.Status;
 
@@ -246,17 +247,9 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
             case R.id.tweetViewButtonAccount:
                 // 投稿するアカウントを入れ替える
-                UserDAO userDao = new UserDAO(TweetViewService.this);
-                final List<User> users = userDao.getUsers();
-                for (int i = 0; i < users.size(); i++) {
-                    if (!users.get(i).getSName().equals(mButtonAccount.getText()))
-                        continue;
-                    if (users.size() == i + 1) {
-                        setUser(users.get(0));
-                    } else {
-                        setUser(users.get(i + 1));
-                    }
-                    break;
+                User nextUser = TwitterUtil.searchNextUser(new UserDAO(this).getUsers(), mButtonAccount.getText().toString());
+                if (nextUser != null) {
+                    setUser(nextUser);
                 }
                 break;
 
