@@ -141,7 +141,6 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
         params.y = mViewY;
         mWindowManager.addView(mLayoutTop, params);
 
-        SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(this);
         mEditTweet.setBackgroundColor(Color.argb(mAppPreferences.readEditAlpha(), 170, 170, 170));
         mListTimeLine.setBackgroundColor(Color.argb(mAppPreferences.readTimeLineAlpha(), 170, 170, 170));
 
