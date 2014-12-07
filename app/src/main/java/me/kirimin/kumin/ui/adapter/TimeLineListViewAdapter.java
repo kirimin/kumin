@@ -2,6 +2,7 @@ package me.kirimin.kumin.ui.adapter;
 
 import me.kirimin.kumin.R;
 import me.kirimin.kumin.twitter.Twitter;
+import me.kirimin.kumin.twitter.TwitterUtil;
 import twitter4j.Status;
 
 import android.content.Context;
@@ -47,7 +48,7 @@ public class TimeLineListViewAdapter extends ArrayAdapter<Status> {
         holder.textTweet.setText(status.getText());
         holder.textUserName.setText(status.getUser().getName());
         holder.textScreenName.setText("@" + status.getUser().getScreenName());
-        holder.textTweetTime.setText(mTwitter.getTimeStamp(status.getCreatedAt()));
+        holder.textTweetTime.setText(TwitterUtil.getTimeStamp(status.getCreatedAt()));
 
         Picasso.with(getContext()).load(status.getUser().getProfileImageURL())
                 .error(R.drawable.no_image)

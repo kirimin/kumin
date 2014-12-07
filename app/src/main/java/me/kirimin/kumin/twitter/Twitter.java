@@ -2,10 +2,6 @@ package me.kirimin.kumin.twitter;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 import android.net.Uri;
 import android.os.Handler;
@@ -23,7 +19,6 @@ import twitter4j.TwitterMethod;
 import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
 import twitter4j.UserStreamAdapter;
-import twitter4j.UserStreamListener;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
@@ -226,31 +221,6 @@ public class Twitter {
                 });
             }
         });
-    }
-
-    public String getTimeStamp(Date createdAt) {
-        Calendar nowCal = Calendar.getInstance();
-        Calendar createdAtCal = Calendar.getInstance();
-        createdAtCal.setTime(createdAt);
-
-        if (!isToday(nowCal, createdAtCal)) {
-            SimpleDateFormat format = new SimpleDateFormat("mm/dd", Locale.JAPAN);
-            return format.format(createdAt);
-        } else if (nowCal.get(Calendar.HOUR_OF_DAY) != createdAtCal.get(Calendar.HOUR_OF_DAY)) {
-            return nowCal.get(Calendar.HOUR_OF_DAY) - createdAtCal.get(Calendar.HOUR_OF_DAY) + "h";
-        } else if (nowCal.get(Calendar.MINUTE) > createdAtCal.get(Calendar.MINUTE)) {
-            return nowCal.get(Calendar.MINUTE) - createdAtCal.get(Calendar.MINUTE) + "m";
-        } else {
-            String s = nowCal.get(Calendar.SECOND) - createdAtCal.get(Calendar.SECOND) + "s";
-            return s.equals("-1s") ? "0s" : s;
-        }
-
-    }
-
-    private boolean isToday(Calendar cal1, Calendar cal2) {
-        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
-                && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)
-                && cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH);
     }
 
     /**
