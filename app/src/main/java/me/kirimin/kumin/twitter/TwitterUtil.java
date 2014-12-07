@@ -9,8 +9,8 @@ public class TwitterUtil {
     /**
      * 現在のアカウントから切り替えるべき次のアカウントを探す
      *
-     * @param accountList アカウントの一覧
-     * @param currentAccount  現在選択中のアカウント
+     * @param accountList    アカウントの一覧
+     * @param currentAccount 現在選択中のアカウント
      * @return 受け取ったリストから現アカウントの次の要素のアカウントを返す。見つからなければnullを返す。
      */
     public static User searchNextAccount(List<User> accountList, String currentAccount) {
@@ -38,6 +38,17 @@ public class TwitterUtil {
             return i + 1 < hashTagList.size() ? hashTagList.get(i + 1) : hashTagList.get(0);
         }
         return null;
+    }
+
+    /**
+     * ツイート文字列を生成する
+     *
+     * @param tweetMessage ツイート本文
+     * @param hashTag      ハッシュタグ。未設定の場合は#のみが渡される想定
+     * @return ハッシュタグが設定されていれば本文+ハッシュタグ、設定されていなければ本文をそのまま返す
+     */
+    public static String buildTweet(String tweetMessage, String hashTag) {
+        return hashTag.length() == 1 ? tweetMessage : tweetMessage + " " + hashTag;
     }
 
     private TwitterUtil() {

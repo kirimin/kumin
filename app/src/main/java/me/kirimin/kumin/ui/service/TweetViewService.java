@@ -269,13 +269,10 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
             case R.id.tweetViewButtonTweet:
                 // ツイートボタン
-                String tweet = mEditTweet.getText().toString();
-                if (!mButtonHashTag.getText().toString().equals(getString(R.string.char_hashTag))) {
-                    tweet += " " + mButtonHashTag.getText();
-                }
                 Toast.makeText(TweetViewService.this, getString(R.string.layer_toast_tweeting), Toast.LENGTH_SHORT).show();
-                mTwitter.updateStatus(tweet);
+                mTwitter.updateStatus(TwitterUtil.buildTweet(mEditTweet.getText().toString(), mButtonHashTag.getText().toString()));
                 break;
+
             default:
                 break;
         }
