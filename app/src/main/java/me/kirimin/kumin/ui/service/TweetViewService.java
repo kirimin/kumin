@@ -255,19 +255,9 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
             case R.id.tweetViewButtonHashTag:
                 // ハッシュタグを入れ替える
-                HashTagDAO hashTagDao = new HashTagDAO(TweetViewService.this);
-                final List<String> hashTagList = hashTagDao.getHashTagList();
+                final List<String> hashTagList = new HashTagDAO(TweetViewService.this).getHashTagList();
                 hashTagList.add(getString(R.string.char_hashTag));
-                for (int i = 0; i < hashTagList.size(); i++) {
-                    if (!hashTagList.get(i).equals(mButtonHashTag.getText()))
-                        continue;
-                    if (hashTagList.size() == i + 1) {
-                        mButtonHashTag.setText(hashTagList.get(0));
-                    } else {
-                        mButtonHashTag.setText(hashTagList.get(i + 1));
-                    }
-                    break;
-                }
+                mButtonHashTag.setText(TwitterUtil.searchNextHashTag(hashTagList, mButtonHashTag.getText().toString()));
                 break;
 
             case R.id.tweetViewButtonMenu:
