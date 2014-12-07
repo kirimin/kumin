@@ -1,8 +1,5 @@
 package me.kirimin.kumin.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class User {
 
     private String id;
@@ -31,20 +28,5 @@ public class User {
 
     public String getSecret() {
         return secret;
-    }
-
-    /**
-     * Userのリストから対応したスクリーンネームの配列を取得する
-     *
-     * @param users Userのリスト
-     * @return Userのリストに対応したスクリーンネームの配列
-     */
-    public static List<String> getUserNames(List<User> users) {
-        List<String> userNames = new ArrayList<String>();
-        for (User user : users) {
-            userNames.add(user.getSName());
-        }
-
-        return userNames;
     }
 }
