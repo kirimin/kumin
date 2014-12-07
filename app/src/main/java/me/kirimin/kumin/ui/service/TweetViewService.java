@@ -2,9 +2,9 @@ package me.kirimin.kumin.ui.service;
 
 import java.util.List;
 
+import me.kirimin.kumin.model.Tweet;
 import me.kirimin.kumin.twitter.TwitterUtil;
 import me.kirimin.kumin.ui.notification.AppNotificationBuilder;
-import twitter4j.Status;
 
 import me.kirimin.kumin.AppPreferences;
 import me.kirimin.kumin.Constants;
@@ -348,15 +348,15 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Status status = (Status) parent.getAdapter().getItem(position);
-        mEditTweet.setText(getString(R.string.char_replay) + status.getUser().getScreenName() + " " + mEditTweet.getText());
+        Tweet tweet = (Tweet) parent.getAdapter().getItem(position);
+        mEditTweet.setText(getString(R.string.char_replay) + tweet.getScreenName() + " " + mEditTweet.getText());
     }
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(TweetViewService.this, R.string.layer_toast_favoriting, Toast.LENGTH_SHORT).show();
-        Status status = (Status) parent.getAdapter().getItem(position);
-        mTwitter.doFavorite(status.getId());
+        Tweet tweet = (Tweet) parent.getAdapter().getItem(position);
+        mTwitter.doFavorite(tweet.getUserId());
         return true;
     }
 
@@ -481,8 +481,8 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
     private class StreamListener implements Twitter.StreamListener {
 
         @Override
-        public void onStatus(Status status) {
-            mAdapter.insert(status, 0);
+        public void onUpdateStream(Tweet tweet) {
+            mAdapter.insert(tweet, 0);
             if (mAdapter.getCount() > 50) {
                 mAdapter.remove(mAdapter.getItem(mAdapter.getCount() - 1));
             }

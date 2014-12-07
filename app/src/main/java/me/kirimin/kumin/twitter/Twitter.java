@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Handler;
 
 import me.kirimin.kumin.Consumer;
+import me.kirimin.kumin.model.Tweet;
 import me.kirimin.kumin.model.User;
 import twitter4j.AsyncTwitter;
 import twitter4j.AsyncTwitterFactory;
@@ -166,7 +167,7 @@ public class Twitter {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        listener.onStatus(status);
+                        listener.onUpdateStream(toTweet(status));
                     }
                 });
             }
@@ -223,6 +224,15 @@ public class Twitter {
         });
     }
 
+    private static Tweet toTweet(Status status) {
+        return new Tweet(status.getId(),
+                status.getText(),
+                status.getUser().getName(),
+                status.getUser().getScreenName(),
+                status.getUser().getProfileImageURL(),
+                status.getCreatedAt());
+    }
+
     /**
      * ツイート時に呼び出されるリスナー
      */
@@ -238,7 +248,7 @@ public class Twitter {
      * ストリーム取得時に呼び出されるリスナー
      */
     public interface StreamListener {
-        public void onStatus(Status status);
+        public void onUpdateStream(Tweet tweet);
     }
 
     public interface OnOAuthListener {
