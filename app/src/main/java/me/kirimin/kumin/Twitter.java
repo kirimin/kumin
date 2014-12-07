@@ -86,7 +86,7 @@ public class Twitter {
     /**
      * お気に入り登録/解除
      *
-     * @param user
+     * @param userId StatusのgetIdで取得できるユーザーのID
      */
     public void doFavorite(long userId) {
         mTwitter.createFavorite(userId);
