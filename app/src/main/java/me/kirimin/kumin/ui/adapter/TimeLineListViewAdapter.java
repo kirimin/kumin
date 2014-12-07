@@ -20,11 +20,8 @@ import com.squareup.picasso.Picasso;
  */
 public class TimeLineListViewAdapter extends ArrayAdapter<Status> {
 
-    private Twitter mTwitter;
-
-    public TimeLineListViewAdapter(Context context, Twitter twitter) {
+    public TimeLineListViewAdapter(Context context) {
         super(context, 0);
-        mTwitter = twitter;
     }
 
     @Override

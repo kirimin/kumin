@@ -147,7 +147,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
         mTwitter = new Twitter();
         mTwitter.addOnStatusUpdateListener(new OnStatusUpdateListener());
         mTwitter.setStreamListener(new StreamListener());
-        mAdapter = new TimeLineListViewAdapter(this, mTwitter);
+        mAdapter = new TimeLineListViewAdapter(this);
         mListTimeLine.setAdapter(mAdapter);
 
         // デフォルトユーザーを設定
