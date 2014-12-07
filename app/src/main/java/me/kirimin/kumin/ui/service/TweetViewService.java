@@ -148,7 +148,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
         // Twitterインスタンス初期設定
         mTwitter = new Twitter();
         mTwitter.addOnStatusUpdateListener(new OnStatusUpdateListener());
-        mTwitter.setStreamListener(new StreamLisnter());
+        mTwitter.setStreamListener(new StreamListener());
         mAdapter = new TimeLineListViewAdapter(this, mTwitter);
         mListTimeLine.setAdapter(mAdapter);
 
@@ -501,7 +501,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
     /**
      * UserStream取得時の処理
      */
-    private class StreamLisnter implements Twitter.StreamListener {
+    private class StreamListener implements Twitter.StreamListener {
 
         @Override
         public void onStatus(Status status) {
