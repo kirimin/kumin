@@ -54,16 +54,16 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
     private static final int LAYOUT_TOP_ID = 1;
 
-    private static final WindowManager.LayoutParams NOT_FOCUSABLE_PARAMES = new WindowManager.LayoutParams(
+    private static final WindowManager.LayoutParams NOT_FOCUSABLE_PARAMS = new WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.TYPE_SYSTEM_ALERT, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
             PixelFormat.TRANSLUCENT);
 
-    private static final WindowManager.LayoutParams FOCUSABLE_PARAMES = new WindowManager.LayoutParams(
+    private static final WindowManager.LayoutParams FOCUSABLE_PARAMS = new WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.TYPE_SYSTEM_ALERT, 0, PixelFormat.TRANSLUCENT);
 
-    private static final WindowManager.LayoutParams NOT_TOUCHABLE_PARAMES = new WindowManager.LayoutParams(
+    private static final WindowManager.LayoutParams NOT_TOUCHABLE_PARAMS = new WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.TYPE_SYSTEM_ALERT, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
             PixelFormat.TRANSLUCENT);
@@ -97,7 +97,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
         // オーバーレイViewの設定を行う
         LayoutInflater layoutInflater = LayoutInflater.from(this);
-        WindowManager.LayoutParams params = NOT_FOCUSABLE_PARAMES;
+        WindowManager.LayoutParams params = NOT_FOCUSABLE_PARAMS;
         mWindowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
 
         mLayoutTop = layoutInflater.inflate(R.layout.service_tweet_view, null);
@@ -175,7 +175,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
     public int onStartCommand(Intent intent, int flags, int startId) {
         // タッチモード切り替え
         if (isTouchable) {
-            mWindowManager.updateViewLayout(mLayoutTop, NOT_FOCUSABLE_PARAMES);
+            mWindowManager.updateViewLayout(mLayoutTop, NOT_FOCUSABLE_PARAMS);
             mEditTweet.setVisibility(View.VISIBLE);
             mButtonListviewResize.setVisibility(View.VISIBLE);
             mButtonClose.setVisibility(View.VISIBLE);
@@ -200,9 +200,9 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
             mButtonOpen.setText(getString(R.string.char_minimize));
         } else {
-            NOT_TOUCHABLE_PARAMES.x = NOT_FOCUSABLE_PARAMES.x;
-            NOT_TOUCHABLE_PARAMES.y = NOT_FOCUSABLE_PARAMES.y;
-            mWindowManager.updateViewLayout(mLayoutTop, NOT_TOUCHABLE_PARAMES);
+            NOT_TOUCHABLE_PARAMS.x = NOT_FOCUSABLE_PARAMS.x;
+            NOT_TOUCHABLE_PARAMS.y = NOT_FOCUSABLE_PARAMS.y;
+            mWindowManager.updateViewLayout(mLayoutTop, NOT_TOUCHABLE_PARAMS);
             mButtonListviewResize.setVisibility(View.GONE);
             mButtonClose.setVisibility(View.GONE);
             mButtonHashTag.setVisibility(View.GONE);
@@ -307,7 +307,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
             case R.id.tweetViewEditTweet:
             case R.id.tweetViewListTimeLine:
                 // 範囲内タッチ
-                WindowManager.LayoutParams innerView = FOCUSABLE_PARAMES;
+                WindowManager.LayoutParams innerView = FOCUSABLE_PARAMS;
                 innerView.x = mViewX;
                 innerView.y = mViewY;
                 mWindowManager.updateViewLayout(mLayoutTop, innerView);
@@ -315,7 +315,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
             case LAYOUT_TOP_ID:
                 // 範囲外タッチ
-                WindowManager.LayoutParams outerView = NOT_FOCUSABLE_PARAMES;
+                WindowManager.LayoutParams outerView = NOT_FOCUSABLE_PARAMS;
                 outerView.x = mViewX;
                 outerView.y = mViewY;
 
@@ -344,7 +344,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
                 if (event.getAction() == MotionEvent.ACTION_MOVE) {
                     // タッチ位置にビューを設定
-                    WindowManager.LayoutParams params = NOT_FOCUSABLE_PARAMES;
+                    WindowManager.LayoutParams params = NOT_FOCUSABLE_PARAMS;
                     params.x = mViewX;
                     params.y = mViewY;
                     mWindowManager.updateViewLayout(mLayoutTop, params);
@@ -456,7 +456,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
         }
 
         private void updateViewLayout(int addDp) {
-            WindowManager.LayoutParams params = NOT_FOCUSABLE_PARAMES;
+            WindowManager.LayoutParams params = NOT_FOCUSABLE_PARAMS;
             params.x = mViewX += dp2Px(addDp);
             params.y = mViewY;
 
@@ -478,7 +478,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
             if (mAppPreferences.readIsCloseWhenTweet()) {
                 mLayoutTop.findViewById(R.id.tweetViewLayoutTweetitems).setVisibility(View.GONE);
                 mButtonOpen.setText("□");
-                WindowManager.LayoutParams params = NOT_FOCUSABLE_PARAMES;
+                WindowManager.LayoutParams params = NOT_FOCUSABLE_PARAMS;
                 params.x = mViewX += dp2Px(140);
                 params.y = mViewY;
 
