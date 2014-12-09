@@ -8,18 +8,20 @@ import me.kirimin.kumin.db.UserDAO;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-/***
+/**
  * OAuth認証画面
- * 
+ *
  * @author kirimin
- * 
  */
 public class OAuthActivity extends ActionBarActivity {
 
@@ -32,6 +34,11 @@ public class OAuthActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oauth);
+        setSupportActionBar((Toolbar) findViewById(R.id.tool_bar));
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(R.string.setting_main_add_account);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
 
         mTwitter = new Twitter();
         mTwitter.setOnOAuthListener(new OnOAuthListener());
@@ -47,7 +54,15 @@ public class OAuthActivity extends ActionBarActivity {
         mDialog.setTitle(R.string.oauth_dialog_access_twitter);
     }
 
-    /***
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (android.R.id.home == item.getItemId()) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
      * Twitterアクセスボタンクリック時処理
      */
     private class OnAccessTwitterButtonClickListener implements OnClickListener {
@@ -64,7 +79,7 @@ public class OAuthActivity extends ActionBarActivity {
         }
     }
 
-    /***
+    /**
      * ログインボタンクリック時処理
      */
     private class OnLoginButtonClickListener implements OnClickListener {

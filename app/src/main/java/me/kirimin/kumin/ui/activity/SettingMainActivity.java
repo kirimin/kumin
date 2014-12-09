@@ -48,7 +48,6 @@ public class SettingMainActivity extends ActionBarActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_setting);
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
