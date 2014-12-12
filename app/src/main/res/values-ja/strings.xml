@@ -51,5 +51,7 @@
 
     <string name="account_not_find">アカウントが登録されていません。まずはアカウントの設定を行なってください</string>
 
-    <string name="status_bar_mess">タップしてビューを表示・タッチモード切り替え</string>
+    <string name="status_bar_mess">タップしてビューを表示</string>
+    <string name="notification_action_change_mode">タッチ無効モード</string>
+    <string name="notification_action_settings">設定</string>
 </resources>

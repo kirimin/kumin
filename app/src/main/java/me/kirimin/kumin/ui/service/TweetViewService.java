@@ -171,6 +171,10 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if ("touch".equals(intent.getAction())) {
+            sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+            isTouchable = !isTouchable;
+        }
         // タッチモード切り替え
         if (isTouchable) {
             mWindowManager.updateViewLayout(mLayoutTop, NOT_FOCUSABLE_PARAMS);
@@ -216,7 +220,6 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
             mEditTweet.setVisibility(View.GONE);
             mButtonOpen.setText(getString(R.string.char_open));
         }
-        isTouchable = !isTouchable;
         return START_STICKY;
     }
 

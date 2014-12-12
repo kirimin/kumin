@@ -1,6 +1,7 @@
 package me.kirimin.kumin.ui.notification;
 
 import me.kirimin.kumin.R;
+import me.kirimin.kumin.ui.activity.SettingMainActivity;
 import me.kirimin.kumin.ui.service.TweetViewService;
 
 import android.app.Notification;
@@ -17,14 +18,18 @@ public class AppNotificationBuilder {
      * @return 生成したNotificationインスタンス
      */
     public static Notification create(Context context) {
-        Intent intent = new Intent(context, TweetViewService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
+        Intent changeModeIntent = new Intent(context, TweetViewService.class);
+        changeModeIntent.setAction("touch");
         Notification notification = new NotificationCompat.Builder(context)
-                .setContentIntent(pendingIntent)
+                .setContentIntent(PendingIntent.getService(context, 0, new Intent(context, TweetViewService.class), PendingIntent.FLAG_UPDATE_CURRENT))
+                .addAction(0, context.getString(R.string.notification_action_change_mode),
+                        PendingIntent.getService(context, 0, changeModeIntent, PendingIntent.FLAG_UPDATE_CURRENT))
+                .addAction(0, context.getString(R.string.notification_action_settings),
+                        PendingIntent.getActivity(context, 0, new Intent(context, SettingMainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT))
                 .setContentTitle(context.getString(R.string.app_name))
                 .setContentText(context.getString(R.string.status_bar_mess))
                 .setSmallIcon(R.drawable.ic_stat_icon)
+                .setAutoCancel(true)
                 .build();
 
         notification.flags = Notification.FLAG_ONGOING_EVENT;
