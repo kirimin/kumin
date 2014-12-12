@@ -52,6 +52,7 @@
     <string name="account_not_find">Account is not registered</string>
     
     <string name="status_bar_mess">Show Tweet view by tapping</string>
+    <string name="notification_action_change_mode">Disable the touch</string>
     
         <string name="twitter4j_license">Copyright (C) 2007 Yusuke Yamamoto\n
 \n
@@ -80,4 +81,5 @@ distributed under the License is distributed on an "AS IS" BASIS,\n
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n
 See the License for the specific language governing permissions and\n
 limitations under the License.</string>
+    <string name="notification_action_settings">Settings</string>
 </resources>
