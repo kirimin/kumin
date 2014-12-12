@@ -220,6 +220,9 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
             mEditTweet.setVisibility(View.GONE);
             mButtonOpen.setText(getString(R.string.char_open));
         }
+        if ("oldVersion".equals(intent.getAction())) {
+            isTouchable = !isTouchable;
+        }
         return START_STICKY;
     }
 
