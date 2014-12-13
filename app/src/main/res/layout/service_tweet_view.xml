@@ -2,18 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tweetViewLayoutTop"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/tweetViewLayoutViews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <RelativeLayout
             android:id="@+id/tweetViewLayoutTweetitems"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/tweetViewEditTweet"
@@ -24,7 +24,7 @@
                 android:hint="@string/char_space"
                 android:maxLength="140"
                 android:minLines="3"
-                android:textColor="@android:color/white" >
+                android:textColor="@android:color/white">
 
                 <requestFocus />
             </EditText>
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignRight="@+id/tweetViewEditTweet"
                 android:layout_below="@+id/tweetViewEditTweet"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/tweetViewButtonHashTag"
@@ -105,21 +105,28 @@
         <RelativeLayout
             android:id="@+id/tweetViewLayoutTimeLines"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <ListView
                 android:id="@+id/tweetViewListTimeLine"
                 android:layout_width="280dp"
                 android:layout_height="100dp"
                 android:background="#00222255"
-                android:cacheColorHint="#00000000"/>
+                android:cacheColorHint="#00000000" />
 
-            <View
+            <LinearLayout
                 android:id="@+id/tweetViewTimeLineResizeButton"
                 android:layout_width="280dp"
                 android:layout_height="12dp"
                 android:layout_below="@+id/tweetViewListTimeLine"
-                android:background="@drawable/button_no_color" />
+                android:background="@drawable/button_no_color"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_navi_arrow"
+                    android:layout_gravity="center_horizontal"/>
+                </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
 
@@ -131,7 +138,7 @@
         android:layout_toRightOf="@+id/tweetViewLayoutViews"
         android:background="#AA888888"
         android:orientation="vertical"
-        android:paddingBottom="26dp" >
+        android:paddingBottom="26dp">
 
         <Button
             android:id="@+id/tweetViewButtonOpen"
