@@ -7,7 +7,8 @@
     <color name="red">#FA1B69</color>
     <color name="green">#42BD9A</color>
     <color name="green_pressed">#64DFBC</color>
-    <color name="purple">#A537FD</color>
+    <color name="purple">#9C27B0</color>
+    <color name="purple_dark">#7B1FA2</color>
     <color name="gray_text">#888888</color>
     <color name="gray_text_pressed">#AAAAAA</color>
 </resources>

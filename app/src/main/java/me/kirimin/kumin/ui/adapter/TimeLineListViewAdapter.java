@@ -1,8 +1,8 @@
 package me.kirimin.kumin.ui.adapter;
 
 import me.kirimin.kumin.R;
-import me.kirimin.kumin.Twitter;
-import twitter4j.Status;
+import me.kirimin.kumin.model.Tweet;
+import me.kirimin.kumin.twitter.TwitterUtil;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -17,18 +17,15 @@ import com.squareup.picasso.Picasso;
 /**
  * タイムラインをリスト表示するAdapter
  */
-public class TimeLineListViewAdapter extends ArrayAdapter<Status> {
+public class TimeLineListViewAdapter extends ArrayAdapter<Tweet> {
 
-    private Twitter mTwitter;
-
-    public TimeLineListViewAdapter(Context context, Twitter twitter) {
+    public TimeLineListViewAdapter(Context context) {
         super(context, 0);
-        mTwitter = twitter;
     }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final Status status = getItem(position);
+        final Tweet tweet = getItem(position);
         final ViewHolder holder;
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_timeline, null);
@@ -44,12 +41,12 @@ public class TimeLineListViewAdapter extends ArrayAdapter<Status> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.textTweet.setText(status.getText());
-        holder.textUserName.setText(status.getUser().getName());
-        holder.textScreenName.setText("@" + status.getUser().getScreenName());
-        holder.textTweetTime.setText(mTwitter.getTimeStamp(status.getCreatedAt()));
+        holder.textTweet.setText(tweet.getText());
+        holder.textUserName.setText(tweet.getName());
+        holder.textScreenName.setText("@" + tweet.getScreenName());
+        holder.textTweetTime.setText(TwitterUtil.getTimeStamp(tweet.getCreatedAt()));
 
-        Picasso.with(getContext()).load(status.getUser().getProfileImageURL())
+        Picasso.with(getContext()).load(tweet.getIconUrl())
                 .error(R.drawable.no_image)
                 .resize(48, 48)
                 .into(holder.imageIcon);

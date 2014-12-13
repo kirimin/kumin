@@ -5,12 +5,11 @@ import java.util.List;
 import me.kirimin.kumin.AppPreferences;
 import me.kirimin.kumin.R;
 import me.kirimin.kumin.db.HashTagDAO;
-import me.kirimin.kumin.db.User;
+import me.kirimin.kumin.model.User;
 import me.kirimin.kumin.db.UserDAO;
 import me.kirimin.kumin.ui.notification.AppNotificationBuilder;
 import me.kirimin.kumin.ui.service.TweetViewService;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.app.AlertDialog;
@@ -49,7 +48,6 @@ public class SettingMainActivity extends ActionBarActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_setting);
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -154,14 +152,14 @@ public class SettingMainActivity extends ActionBarActivity {
             }
         });
 
-        SeekBar alphaTimelineSpaceSeedBar = (SeekBar) findViewById(R.id.settingBackgroundAlphaOnTimelineSpaceSeekBar);
-        alphaTimelineSpaceSeedBar.setProgress(mSharedPreferences.getInt(getString(R.string.setting_value_timeline_aplha), 50));
-        final View timelineSpaceSampleView = findViewById(R.id.settingBackgroundAlphaOnTimelineSpaceSample);
-        timelineSpaceSampleView.setBackgroundColor(Color.argb(mSharedPreferences.getInt(getString(R.string.setting_value_timeline_aplha), 50), 170, 170, 170));
-        alphaTimelineSpaceSeedBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        SeekBar alphaTimeLineSpaceSeedBar = (SeekBar) findViewById(R.id.settingBackgroundAlphaOnTimelineSpaceSeekBar);
+        alphaTimeLineSpaceSeedBar.setProgress(mSharedPreferences.getInt(getString(R.string.setting_value_timeline_aplha), 50));
+        final View timeLineSpaceSampleView = findViewById(R.id.settingBackgroundAlphaOnTimelineSpaceSample);
+        timeLineSpaceSampleView.setBackgroundColor(Color.argb(mSharedPreferences.getInt(getString(R.string.setting_value_timeline_aplha), 50), 170, 170, 170));
+        alphaTimeLineSpaceSeedBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                timelineSpaceSampleView.setBackgroundColor(Color.argb(seekBar.getProgress(), 170, 170, 170));
+                timeLineSpaceSampleView.setBackgroundColor(Color.argb(seekBar.getProgress(), 170, 170, 170));
             }
 
             @Override

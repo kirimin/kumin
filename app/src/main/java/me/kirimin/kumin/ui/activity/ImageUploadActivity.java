@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import me.kirimin.kumin.AppPreferences;
 import me.kirimin.kumin.R;
-import me.kirimin.kumin.Twitter;
+import me.kirimin.kumin.twitter.Twitter;
 import me.kirimin.kumin.db.UserDAO;
 import android.app.Activity;
 import android.content.ContentResolver;

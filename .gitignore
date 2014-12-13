@@ -10,3 +10,4 @@ local.properties
 
 *.jks
 *.apk
+app/manifest-merger-release-report.txt

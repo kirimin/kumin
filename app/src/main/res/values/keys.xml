@@ -12,19 +12,6 @@
     <string name="setting_value_about">about</string>
     <string name="setting_value_edit_aplha">editalpha</string>
     <string name="setting_value_timeline_aplha">timelinealpha</string>
-
-    <string-array name="setting_value_alphas">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
-    <string-array name="setting_value_tl_alphas">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
     <string name="setting_value_tweet_text_cache">tweettextcache</string>
     <string name="setting_value_tweet_view_x_cache">weetviewxcache</string>
     <string name="setting_value_tweet_view_y_cache">weetviewycache</string>

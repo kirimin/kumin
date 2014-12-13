@@ -2,15 +2,16 @@ package me.kirimin.kumin.ui.service;
 
 import java.util.List;
 
+import me.kirimin.kumin.model.Tweet;
+import me.kirimin.kumin.twitter.TwitterUtil;
 import me.kirimin.kumin.ui.notification.AppNotificationBuilder;
-import twitter4j.Status;
 
 import me.kirimin.kumin.AppPreferences;
 import me.kirimin.kumin.Constants;
 import me.kirimin.kumin.R;
-import me.kirimin.kumin.Twitter;
+import me.kirimin.kumin.twitter.Twitter;
 import me.kirimin.kumin.db.HashTagDAO;
-import me.kirimin.kumin.db.User;
+import me.kirimin.kumin.model.User;
 import me.kirimin.kumin.db.UserDAO;
 import me.kirimin.kumin.ui.activity.ImageUploadActivity;
 import me.kirimin.kumin.ui.adapter.TimeLineListViewAdapter;
@@ -19,12 +20,10 @@ import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.AsyncTask;
 import android.os.IBinder;
-import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Display;
@@ -54,16 +53,16 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
     private static final int LAYOUT_TOP_ID = 1;
 
-    private static final WindowManager.LayoutParams NOT_FOCUSABLE_PARAMES = new WindowManager.LayoutParams(
+    private static final WindowManager.LayoutParams NOT_FOCUSABLE_PARAMS = new WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.TYPE_SYSTEM_ALERT, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
             PixelFormat.TRANSLUCENT);
 
-    private static final WindowManager.LayoutParams FOCUSABLE_PARAMES = new WindowManager.LayoutParams(
+    private static final WindowManager.LayoutParams FOCUSABLE_PARAMS = new WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.TYPE_SYSTEM_ALERT, 0, PixelFormat.TRANSLUCENT);
 
-    private static final WindowManager.LayoutParams NOT_TOUCHABLE_PARAMES = new WindowManager.LayoutParams(
+    private static final WindowManager.LayoutParams NOT_TOUCHABLE_PARAMS = new WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.TYPE_SYSTEM_ALERT, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
             PixelFormat.TRANSLUCENT);
@@ -97,7 +96,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
         // オーバーレイViewの設定を行う
         LayoutInflater layoutInflater = LayoutInflater.from(this);
-        WindowManager.LayoutParams params = NOT_FOCUSABLE_PARAMES;
+        WindowManager.LayoutParams params = NOT_FOCUSABLE_PARAMS;
         mWindowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
 
         mLayoutTop = layoutInflater.inflate(R.layout.service_tweet_view, null);
@@ -141,15 +140,14 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
         params.y = mViewY;
         mWindowManager.addView(mLayoutTop, params);
 
-        SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(this);
         mEditTweet.setBackgroundColor(Color.argb(mAppPreferences.readEditAlpha(), 170, 170, 170));
-        mListTimeLine.setBackgroundColor(Color.argb(mAppPreferences.readTimelineAlpha(), 170, 170, 170));
+        mListTimeLine.setBackgroundColor(Color.argb(mAppPreferences.readTimeLineAlpha(), 170, 170, 170));
 
         // Twitterインスタンス初期設定
         mTwitter = new Twitter();
         mTwitter.addOnStatusUpdateListener(new OnStatusUpdateListener());
-        mTwitter.setStreamListener(new StreamLisnter());
-        mAdapter = new TimeLineListViewAdapter(this, mTwitter);
+        mTwitter.setStreamListener(new StreamListener());
+        mAdapter = new TimeLineListViewAdapter(this);
         mListTimeLine.setAdapter(mAdapter);
 
         // デフォルトユーザーを設定
@@ -173,9 +171,13 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if ("touch".equals(intent.getAction())) {
+            sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+            isTouchable = !isTouchable;
+        }
         // タッチモード切り替え
         if (isTouchable) {
-            mWindowManager.updateViewLayout(mLayoutTop, NOT_FOCUSABLE_PARAMES);
+            mWindowManager.updateViewLayout(mLayoutTop, NOT_FOCUSABLE_PARAMS);
             mEditTweet.setVisibility(View.VISIBLE);
             mButtonListviewResize.setVisibility(View.VISIBLE);
             mButtonClose.setVisibility(View.VISIBLE);
@@ -187,7 +189,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
             } else {
                 mButtonAccount.setVisibility(View.VISIBLE);
             }
-            if (!mAppPreferences.readIsShowHashtagButton()) {
+            if (!mAppPreferences.readIsShowHashTagButton()) {
                 mButtonHashTag.setVisibility(View.GONE);
             } else {
                 mButtonHashTag.setVisibility(View.VISIBLE);
@@ -200,9 +202,9 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
             mButtonOpen.setText(getString(R.string.char_minimize));
         } else {
-            NOT_TOUCHABLE_PARAMES.x = NOT_FOCUSABLE_PARAMES.x;
-            NOT_TOUCHABLE_PARAMES.y = NOT_FOCUSABLE_PARAMES.y;
-            mWindowManager.updateViewLayout(mLayoutTop, NOT_TOUCHABLE_PARAMES);
+            NOT_TOUCHABLE_PARAMS.x = NOT_FOCUSABLE_PARAMS.x;
+            NOT_TOUCHABLE_PARAMS.y = NOT_FOCUSABLE_PARAMS.y;
+            mWindowManager.updateViewLayout(mLayoutTop, NOT_TOUCHABLE_PARAMS);
             mButtonListviewResize.setVisibility(View.GONE);
             mButtonClose.setVisibility(View.GONE);
             mButtonHashTag.setVisibility(View.GONE);
@@ -218,7 +220,9 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
             mEditTweet.setVisibility(View.GONE);
             mButtonOpen.setText(getString(R.string.char_open));
         }
-        isTouchable = !isTouchable;
+        if ("oldVersion".equals(intent.getAction())) {
+            isTouchable = !isTouchable;
+        }
         return START_STICKY;
     }
 
@@ -249,35 +253,17 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
             case R.id.tweetViewButtonAccount:
                 // 投稿するアカウントを入れ替える
-                UserDAO userDao = new UserDAO(TweetViewService.this);
-                final List<User> users = userDao.getUsers();
-                for (int i = 0; i < users.size(); i++) {
-                    if (!users.get(i).getSName().equals(mButtonAccount.getText()))
-                        continue;
-                    if (users.size() == i + 1) {
-                        setUser(users.get(0));
-                    } else {
-                        setUser(users.get(i + 1));
-                    }
-                    break;
+                User nextUser = TwitterUtil.searchNextAccount(new UserDAO(this).getUsers(), mButtonAccount.getText().toString());
+                if (nextUser != null) {
+                    setUser(nextUser);
                 }
                 break;
 
             case R.id.tweetViewButtonHashTag:
                 // ハッシュタグを入れ替える
-                HashTagDAO hashTagDao = new HashTagDAO(TweetViewService.this);
-                final List<String> hashTagList = hashTagDao.getHashTagList();
+                final List<String> hashTagList = new HashTagDAO(TweetViewService.this).getHashTagList();
                 hashTagList.add(getString(R.string.char_hashTag));
-                for (int i = 0; i < hashTagList.size(); i++) {
-                    if (!hashTagList.get(i).equals(mButtonHashTag.getText()))
-                        continue;
-                    if (hashTagList.size() == i + 1) {
-                        mButtonHashTag.setText(hashTagList.get(0));
-                    } else {
-                        mButtonHashTag.setText(hashTagList.get(i + 1));
-                    }
-                    break;
-                }
+                mButtonHashTag.setText(TwitterUtil.searchNextHashTag(hashTagList, mButtonHashTag.getText().toString()));
                 break;
 
             case R.id.tweetViewButtonMenu:
@@ -289,13 +275,10 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
             case R.id.tweetViewButtonTweet:
                 // ツイートボタン
-                String tweet = mEditTweet.getText().toString();
-                if (!mButtonHashTag.getText().toString().equals(getString(R.string.char_hashTag))) {
-                    tweet += " " + mButtonHashTag.getText();
-                }
                 Toast.makeText(TweetViewService.this, getString(R.string.layer_toast_tweeting), Toast.LENGTH_SHORT).show();
-                mTwitter.updateStatus(tweet);
+                mTwitter.updateStatus(TwitterUtil.buildTweet(mEditTweet.getText().toString(), mButtonHashTag.getText().toString()));
                 break;
+
             default:
                 break;
         }
@@ -307,7 +290,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
             case R.id.tweetViewEditTweet:
             case R.id.tweetViewListTimeLine:
                 // 範囲内タッチ
-                WindowManager.LayoutParams innerView = FOCUSABLE_PARAMES;
+                WindowManager.LayoutParams innerView = FOCUSABLE_PARAMS;
                 innerView.x = mViewX;
                 innerView.y = mViewY;
                 mWindowManager.updateViewLayout(mLayoutTop, innerView);
@@ -315,7 +298,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
             case LAYOUT_TOP_ID:
                 // 範囲外タッチ
-                WindowManager.LayoutParams outerView = NOT_FOCUSABLE_PARAMES;
+                WindowManager.LayoutParams outerView = NOT_FOCUSABLE_PARAMS;
                 outerView.x = mViewX;
                 outerView.y = mViewY;
 
@@ -344,7 +327,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
                 if (event.getAction() == MotionEvent.ACTION_MOVE) {
                     // タッチ位置にビューを設定
-                    WindowManager.LayoutParams params = NOT_FOCUSABLE_PARAMES;
+                    WindowManager.LayoutParams params = NOT_FOCUSABLE_PARAMS;
                     params.x = mViewX;
                     params.y = mViewY;
                     mWindowManager.updateViewLayout(mLayoutTop, params);
@@ -371,15 +354,15 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Status status = (Status) parent.getAdapter().getItem(position);
-        mEditTweet.setText(getString(R.string.char_replay) + status.getUser().getScreenName() + " " + mEditTweet.getText());
+        Tweet tweet = (Tweet) parent.getAdapter().getItem(position);
+        mEditTweet.setText(getString(R.string.char_replay) + tweet.getScreenName() + " " + mEditTweet.getText());
     }
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(TweetViewService.this, R.string.layer_toast_favoriting, Toast.LENGTH_SHORT).show();
-        Status status = (Status) parent.getAdapter().getItem(position);
-        mTwitter.doFavorite(status.getId());
+        Tweet tweet = (Tweet) parent.getAdapter().getItem(position);
+        mTwitter.doFavorite(tweet.getUserId());
         return true;
     }
 
@@ -456,7 +439,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
         }
 
         private void updateViewLayout(int addDp) {
-            WindowManager.LayoutParams params = NOT_FOCUSABLE_PARAMES;
+            WindowManager.LayoutParams params = NOT_FOCUSABLE_PARAMS;
             params.x = mViewX += dp2Px(addDp);
             params.y = mViewY;
 
@@ -478,7 +461,7 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
             if (mAppPreferences.readIsCloseWhenTweet()) {
                 mLayoutTop.findViewById(R.id.tweetViewLayoutTweetitems).setVisibility(View.GONE);
                 mButtonOpen.setText("□");
-                WindowManager.LayoutParams params = NOT_FOCUSABLE_PARAMES;
+                WindowManager.LayoutParams params = NOT_FOCUSABLE_PARAMS;
                 params.x = mViewX += dp2Px(140);
                 params.y = mViewY;
 
@@ -501,11 +484,11 @@ public class TweetViewService extends Service implements OnClickListener, OnTouc
     /**
      * UserStream取得時の処理
      */
-    private class StreamLisnter implements Twitter.StreamListener {
+    private class StreamListener implements Twitter.StreamListener {
 
         @Override
-        public void onStatus(Status status) {
-            mAdapter.insert(status, 0);
+        public void onUpdateStream(Tweet tweet) {
+            mAdapter.insert(tweet, 0);
             if (mAdapter.getCount() > 50) {
                 mAdapter.remove(mAdapter.getItem(mAdapter.getCount() - 1));
             }
