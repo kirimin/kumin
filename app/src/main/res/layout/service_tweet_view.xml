@@ -74,7 +74,7 @@
                     android:background="@drawable/button_menu"
                     android:contentDescription="@string/char_space"
                     android:singleLine="true"
-                    android:src="@drawable/menu"
+                    android:src="@drawable/ic_photo_write"
                     android:textColor="@color/light_gray"
                     android:textSize="14sp" />
 
@@ -85,7 +85,7 @@
                     android:layout_marginLeft="8dp"
                     android:background="@drawable/button_tweet"
                     android:contentDescription="@string/char_space"
-                    android:src="@drawable/write"
+                    android:src="@drawable/ic_write"
                     android:textColor="@color/gray"
                     android:textSize="18sp" />
             </LinearLayout>
