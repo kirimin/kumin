@@ -1,8 +1,6 @@
 package me.kirimin.kumin;
 
-import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
-import android.widget.TextView;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -105,5 +103,19 @@ public class TwitterUtilTest {
         String result = TwitterUtil.searchNextHashTag(tagList, "tagA");
 
         assertThat(result, is("tagA"));
+    }
+
+    @Test
+    public void buildTweetはツイート本文にハッシュタグを付与した文字列を返す() {
+        String result = TwitterUtil.buildTweet("test", "tagA");
+
+        assertThat(result, is("test tagA"));
+    }
+
+    @Test
+    public void buildTweetはハッシュタグにシャープのみが渡された場合はツイート本文だけをそのまま返す() {
+        String result = TwitterUtil.buildTweet("test", "#");
+
+        assertThat(result, is("test"));
     }
 }
